@@ -12,7 +12,7 @@ com as técnicas analíticas que estou aprofundando na transição
 para Engenharia de Dados.
 
 ## Tecnologias
-PostgreSQL, DBeaver
+Oracle SQL Developer
 
 ## Destaques
 - Ranking de unidades por faturamento mensal (RANK/DENSE_RANK)
