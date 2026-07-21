@@ -4,7 +4,9 @@ select a.valor,
                u.nome_unidade,
                avg(a.valor) over(
                 partition by u.nome_unidade
-                order by a.data_atendimento, a.id_atendimento rows between 2 preceding and current row
+                order by a.data_atendimento, 
+                         a.id_atendimento 
+                rows between 2 preceding and current row
                ) media_movel
           from atendimentos a
           join unidades u on a.id_unidade = u.id_unidade
