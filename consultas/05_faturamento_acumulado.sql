@@ -1,12 +1,12 @@
 -- Qual o faturamento acumulado (running total) de cada unidade ao longo do semestre?
 with resul as ( 
     select u.nome_unidade,
-           to_char(a.data_atendimento,'mm/yy') mes_ano,
+           to_char(trunc(a.data_atendimento, 'MM'),'mm/yy') mes_ano,
            sum(a.valor) total
       from atendimentos a 
       join unidades u on u.id_unidade = a.id_unidade
-      group by u.nome_unidade, to_char(a.data_atendimento,'mm/yy')
-      order by u.nome_unidade, to_char(a.data_atendimento,'mm/yy')
+      group by u.nome_unidade, trunc(a.data_atendimento, 'MM')
+      order by u.nome_unidade, trunc(a.data_atendimento, 'MM')
 )
 select nome_unidade,
        mes_ano,

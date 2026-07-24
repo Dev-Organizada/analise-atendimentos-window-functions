@@ -1,16 +1,15 @@
 -- Comparando mês a mês, o faturamento da unidade cresceu ou caiu em relação ao mês anterior?
 with resul as (
-    select to_char(a.data_atendimento, 'mm/yy') mes_ano,
+    select to_char(trunc(a.data_atendimento, 'MM'), 'mm/yy') mes_ano,
            u.nome_unidade,
            sum(a.valor) valor_total,
            lag(sum(a.valor)) over(
             partition by u.nome_unidade
-            order by to_char(a.data_atendimento, 'mm/yy'), 
-                     sum(a.valor)
+            order by trunc(a.data_atendimento, 'MM')
            ) comparativo
       from atendimentos a
       join unidades u on u.id_unidade = a.id_unidade
-      group by to_char(a.data_atendimento, 'mm/yy'),
+      group by trunc(a.data_atendimento, 'MM'),
                 u.nome_unidade
 )
 select mes_ano,
@@ -24,4 +23,4 @@ select mes_ano,
         else 'Não houve diferença entre os meses'
         end conclusao
   from resul;
-       
+  
