@@ -1,0 +1,1 @@
+-- Divida os médicos em 4 grupos (quartis) por faturamento gerado — quem está no top 25%?
